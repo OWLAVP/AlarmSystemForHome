@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="64"
+   height="64"
+   viewBox="0 0 16.933333 16.933334"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5, 2022-02-04)"
+   sodipodi:docname="house.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:snap-nodes="true"
+     inkscape:snap-global="false"
+     inkscape:zoom="5.3417908"
+     inkscape:cx="37.721432"
+     inkscape:cy="29.20369"
+     inkscape:window-width="1366"
+     inkscape:window-height="703"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     units="px"
+     width="64px">
+    <inkscape:grid
+       type="xygrid"
+       id="grid23983" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path1053"
+       style="color:#000000;fill:#ffffff;stroke-width:1;-inkscape-stroke:none"
+       d="M 10.917755,1.0359819 V 3.1645342 L 9.1437028,1.8038937 a 0.99148912,0.99148912 0 0 0 -1.2087116,0.00207 L 0.58505228,7.4857173 A 0.99138998,0.99138998 0 0 0 0.40728535,8.8763303 0.99138998,0.99138998 0 0 0 1.7978981,9.0540969 L 2.0578306,8.8530758 V 16.186478 H 15.317486 V 9.0194738 A 0.99138998,0.99138998 0 0 0 16.585109,8.7610918 0.99138998,0.99138998 0 0 0 16.403725,7.3720293 L 12.76467,4.580985 V 1.0359819 Z M 8.6026506,4.366528 13.8938,8.3879877 V 14.762792 H 10.348797 V 9.6452756 H 7.2513119 V 14.762792 H 3.4815161 V 8.3802365 Z" />
+  </g>
+</svg>

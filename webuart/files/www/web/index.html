@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html lang="ru"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=yes">
+    <title>Мой умный дом</title>
+    <meta name="description" content="Сигнализация и автоматизация">
+    <link rel="stylesheet" href="css/main_style.css" type="text/css" media="screen"/>
+    <script src="js/jquery.min.js"></script>
+</head>
+
+<body id="body_content">
+
+    <div id="modal_busy_mcu">
+        <p class="text-shine">Пожалуйста подождите...</p>
+        <svg class="spinner" viewBox="0 0 50 50">
+            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+        </svg>
+    </div>
+
+
+
+    <main>
+        <div id="list-radio" class="list-radio">
+            <div class="list-radio-content">
+                  <div id="station0" class="station">
+                    <div class="title-station">
+                      <div id="title0" class="subtitle"></div>
+                      <div id="live0" class="live">LIVE</div>
+                    </div>
+                  </div>
+                  <div id="station1" class="station">
+                    <div class="title-station">
+                      <div id="title1" class="subtitle"></div>
+                      <div id="live1" class="live">LIVE</div>
+                    </div>
+                  </div>
+                  <div id="station2" class="station">
+                    <div class="title-station">
+                      <div id="title2" class="subtitle"></div>
+                      <div id="live2" class="live">LIVE</div>
+                    </div>
+                  </div>
+                  <div id="station3" class="station">
+                    <div class="title-station">
+                      <div id="title3" class="subtitle"></div>
+                      <div id="live3" class="live">LIVE</div>
+                    </div>
+                  </div>
+                  <div id="station4" class="station">
+                    <div class="title-station">
+                      <div id="title4" class="subtitle"></div>
+                      <div id="live4" class="live">LIVE</div>
+                    </div>
+                  </div>
+
+                <div class="radio_tab">
+                    <span>Радио онлайн</span>
+                    <div id="state_player" class="playing" onclick="radio.stop()">
+                        <div class="rect1"></div>
+                        <div class="rect2"></div>
+                        <div class="rect3"></div>
+                        <div class="rect4"></div>
+                        <div class="rect5"></div>
+                    </div>
+                </div>  
+            </div>  
+        </div> 
+        <div id="top-bar" class="top-bar glass_block">
+            <div class="logo">
+                <img src="images/house.svg" width="64" height="64">
+                <div class="text-logo">Мой дом</div>
+            </div>
+            <div id="time_now" class="top-time-child"></div>
+        </div>
+        <div id="main">
+            <div class="board_sensors_and_switch">
+                <div class=" dashboard_sensors">
+                    <div class="motion_sensors glass_block">
+                        <div class="title">
+                            Датчики движения
+                        </div> 
+                        <div class="data_style">
+                            <p>Улица</p>
+                            <object id="street_mot" data="images/security.svg" type="image/svg+xml"></object>
+                        </div>
+                        <div class="data_style">
+                            <p>Двор</p>
+                            <object id="courtyard_mot" data="images/security.svg" type="image/svg+xml"></object>
+                        </div>
+                        <div class="data_style">
+                            <p>Кухня</p>
+                            <object id="kitchen_mot" data="images/security.svg" type="image/svg+xml"></object>
+                        </div>
+                        <div class="data_style border-bottom-0">
+                            <p>Сад</p>
+                            <object id="garden_mot" data="images/security.svg" type="image/svg+xml"></object>
+                        </div>
+                    </div>
+                    <div class="glass_block">
+                        <div class="title ">
+                            Температура на улице
+                        </div>
+                        <div class="ext_temperature_style">
+                            <img class="img-svg-color-ext-temp" src="images/weather.svg" width="40" height="40">
+                            <div class="data">
+                                <div id="ext_temp"></div>
+                                <object id="svg_ext_temp" data="images/celsium.svg" type="image/svg+xml"></object>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn_chart btn" onclick="chartOpen()">График</button>                   
+                        </div>
+                    </div>
+                </div>
+                <div class="btn_col">
+                    <div class="block_btn glass_block">
+                        <div>
+                            <div class="title">Сигнализация</div>
+                            <div class="d-flex">
+                                <div class="block_switch">
+                                    Режим "Я дома"
+                                    <div id="local_guard"></div>
+                                    <div class="power-switch">
+                                        <input type="checkbox" id="checkbox_local_guard"/>
+                                        <div class="button">
+                                            <svg class="power-off">
+                                                <use xlink:href="#line" class="line"/>
+                                                <use xlink:href="#circle" class="circle"/>
+                                            </svg>
+                                            <svg class="power-on">
+                                                <use xlink:href="#line" class="line"/>
+                                                <use xlink:href="#circle" class="circle"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block_switch">
+                                    Максимальнай режим
+                                    <div id="guard"></div>
+                                    <div class="power-switch">
+                                        <input type="checkbox" id="checkbox_guard"/>
+                                        <div class="button">
+                                            <svg class="power-off">
+                                                <use xlink:href="#line" class="line"/>
+                                                <use xlink:href="#circle" class="circle"/>
+                                            </svg>
+                                            <svg class="power-on">
+                                                <use xlink:href="#line" class="line"/>
+                                                <use xlink:href="#circle" class="circle"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="line">
+                                <line x1="78" y1="34" x2="78" y2="58"/>
+                            </symbol>
+                            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="circle">
+                                <circle cx="75" cy="80" r="35"/>
+                            </symbol>
+                        </svg>
+                    </div>
+                    <div class="block_btn glass_block mt-1">
+                        <div>
+                            <div class="title">Выключатели</div>
+                            <div class="d-flex">
+                                <div class="block_switch ">
+                                    Освещение на улице
+                                    <div id="btn_lamp" class="switch_btn">
+                                      <input type="checkbox" id="lampCheck" onclick="switchLamp()">
+                                        <div id="svgBtnLamp">
+                                            <svg width="128" height="128" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                                <g fill="#fff">
+                                                    <g fill="#fff">
+                                                        <g transform="translate(0 -8.5218)" fill="#fff" stroke-linejoin="round">
+                                                            <path id="elementFilamentAfter" d="m55.053 95.278c-0.11855-0.06723-0.1521-0.12408-0.1529-0.25901-9.78e-4 -0.12102 3.6274-6.2521 3.6274-6.2521l3.3521 5.78 3.3001-5.7911 3.5803 5.6156 3.147-5.4627 3.6584 6.1141c0 0.22364-0.23446 0.3654-0.41198 0.24909l-3.2404-5.3891-3.1358 5.44-3.5814-5.5796-3.3091 5.8165-3.3705-5.7414-3.1614 5.4134c-0.12234 0.1105-0.17454 0.11851-0.30186 0.04624z" fill-opacity="0" stroke="#fff" stroke-opacity=".99364" stroke-width="2.9785" style="paint-order:normal"/>
+                                                            <path id="elementFilament" d="m55.053 95.278c-0.11855-0.06723-0.1521-0.12408-0.1529-0.25901-9.78e-4 -0.12102 3.6274-6.2521 3.6274-6.2521l3.3521 5.78 3.3001-5.7911 3.5803 5.6156 3.147-5.4627 3.6584 6.1141c0 0.22364-0.23446 0.3654-0.41198 0.24909l-3.2404-5.3891-3.1358 5.44-3.5814-5.5796-3.3091 5.8165-3.3705-5.7414-3.1614 5.4134c-0.12234 0.1105-0.17454 0.11851-0.30186 0.04624z" fill-opacity="0" stroke="#fffd16" stroke-opacity=".99364" stroke-width="2.9785" style="paint-order:normal"/><g id="rays" transform="matrix(1.9856 0 0 1.9856 3.2166 -6.9751)" fill="#fc0" fill-opacity=".0062374" stroke="#fff700" stroke-width="1.5">
+                                                                <path id="elementRayS" d="m31.072 70.946-0.06459-0.06459v-5.0891l0.06459-0.06459c0.08915-0.08915 0.20152-0.08915 0.29066 0l0.06459 0.06459v5.0891l-0.06459 0.06459c-0.04782 0.04782-0.08555 0.06459-0.14533 0.06459-0.05977 0-0.09751-0.01677-0.14533-0.06459z"/>
+                                                                <path id="elementRaySW" d="m14.67 64.048 9.9e-5 -0.09134 3.6024-3.5947 0.09135 9.8e-5c0.12608 8.7e-5 0.20545 0.07968 0.20531 0.20575l-9.8e-5 0.09134-3.6024 3.5947-0.09135-9.8e-5c-0.06762-7.3e-5 -0.10615-0.01493-0.14838-0.05725-0.04221-0.04231-0.057-0.08087-0.05693-0.1485z"/>
+                                                                <path id="elementRayW" d="m7.9358 47.541 0.064372-0.0648 5.0891-0.017 0.06481 0.06438c0.08948 0.08882 0.08982 0.20122 9.71e-4 0.29066l-0.06437 0.0648-5.0891 0.017-0.06481-0.06438c-0.047974-0.04765-0.064878-0.08533-0.065076-0.14511-1.931e-4 -0.05976 0.016448-0.09756 0.064105-0.14554z"/>
+                                                                <path id="elementRaySE" d="m47.587 64.21-0.09133 0.0012-3.6457-3.5508-0.0012-0.09134c-0.0017-0.12607 0.07675-0.20656 0.2028-0.20822l0.09133-0.0013 3.6457 3.5508 0.0012 0.09135c8.93e-4 0.06762-0.01341 0.10635-0.05513 0.14918-0.0417 0.04281-0.08005 0.05815-0.14767 0.05903z"/>
+                                                                <path id="elementRayE" d="m54.498 47.814-0.06461 0.06456-5.0891-0.001911-0.06457-0.06462c-0.08914-0.08915-0.08907-0.20155 7.3e-5 -0.29066l0.06461-0.06456 5.0891 0.00191 0.06457 0.06462c0.04779 0.04782 0.06456 0.08557 0.06454 0.14535-2.6e-5 0.05976-0.01681 0.0975-0.06464 0.1453z"/></g>
+                                                        <path id="elementMain" d="m65.306 13.786c-1.8884 0.03568-5.6583 1.3108-6.2487 5.8186l0.77318-0.32666c0.0049-0.90413 1.5996-4.8516 5.5321-4.8138 3.9324 0.03783 5.4153 2.8042 5.8734 4.8223l0.76061 0.34458c-0.75811-4.1088-3.8831-5.95-6.6905-5.845zm-0.07459 4.1615c-7.6788 0.44268-12.859 5.9883-14.029 13.082-2.6736-0.04076-4.3276 2.1399-4.2036 4.0488l-0.01648 9.4059c0.49416 2.5842 2.3899 3.4284 4.5387 3.4557l-0.07847 0.72618c-0.54926 3.2845-1.8083 5.6079-6.24 11.495-1.9904 2.6441-4.1041 5.5615-4.6965 6.4805-2.66 4.1261-4.6364 9.0483-5.4799 13.659-0.63548 3.4738-0.56188 9.5059 0.15514 12.717 2.3291 10.429 9.584 18.844 19.445 22.556 1.3882 0.52254 5.1067 1.457 6.8838 1.7297 1.6303 0.25019 6.8149 0.12155 8.9276-0.22107 11.22-1.8197 20.759-10.03 24.324-20.938 1.173-3.5894 1.5844-6.761 1.4233-10.925-0.15841-4.0954-0.61181-6.7646-1.7103-10.045-1.5458-4.6158-3.5878-8.0558-8.9974-15.168-2.5307-3.5131-6.2804-9.7817-6.013-12.088 3.1127 0.09914 4.3509-2.0453 4.4232-3.6888l-0.01022-9.3182c0.027324-1.9172-1.5361-3.7141-4.2709-3.8876-1.0433-7.7385-7.3116-13.141-14.375-13.076zm0.01906 0.71143c7.7455-0.09573 13.193 6.5042 13.564 12.395l-26.795-3.74e-4c0.32608-2.9088 1.4945-5.605 3.356-7.7515 1.8146-1.9074 4.5253-4.4482 9.8749-4.6435zm14.403 13.012c2.1805 0.21093 3.392 1.5755 3.6379 3.2043l0.0044 3.8937-35.657-0.0054-0.0025-3.6772c-5.87e-4 -0.84895 0.70838-3.2299 3.7738-3.4126zm-32.002 8.1556 35.644-0.08433-0.03715 3.9862c0.04859 1.8522-1.579 3.4201-3.5829 3.5199l-28.52-0.01152c-2.256-0.17196-3.6456-1.9592-3.5039-3.9188zm4.8813 8.0578 7.3895 0.02057-0.09428 2.0486c-0.1578 5.3917-1.3212 10.09-4.7547 19.22-3.5099 9.3338-4.4188 12.991-4.5453 18.259-0.05232 2.1789-1e-3 2.6062 0.31026 2.6062 0.26716 0 0.38874-0.31542 0.43048-1.1169 0.35887-6.8927 1.1802-10.206 5.0494-20.372 1.0691-2.8091 2.2869-6.3274 2.707-7.8185 0.84663-3.0049 1.7412-8.044 1.7413-9.8119 0.08391-1.0145 0.18143-3.0376 0.18143-3.0376l8.8589 0.03306 0.1859 2.3607c0.33427 5.3976 1.536 10.447 4.0682 17.056 3.8 9.9183 5.0011 14.305 5.2278 19.108 0.15144 3.2088 0.25083 3.7231 0.71747 3.7231 0.29091 0 0.36893-0.37539 0.36843-1.7995-2e-3 -4.758-1.2718-10.317-3.983-17.46-4.1267-10.872-5.3306-15.554-5.4799-21.322l-0.04786-1.6839 7.3282-7.82e-4 0.34246 1.3161c0.68908 2.6482 1.8165 5.1887 6.6994 12.065 5.71 8.0413 7.8727 11.565 9.2418 17.305 0.60637 2.5421 0.73113 3.21 0.99474 7.8572-0.23599 4.689-0.40897 5.2752-1.0141 7.5198-1.5022 5.5719-4.2624 10.219-8.4351 14.206-3.9765 3.7998-8.0879 6.1186-13.263 7.4772-2.0499 0.53809-3.1038 0.65148-6.655 0.72523-4.6282 0.0961-6.4434-0.1364-9.8856-1.2682-4.529-1.4891-8.3943-3.8716-11.848-7.3104-3.9977-3.9805-6.6151-8.5396-7.962-13.865-1.6937-6.6966-1.0061-14.494 1.8693-21.175 1.3187-3.0642 3.0076-5.7212 7.039-11.092 2.0851-2.7777 4.2343-5.8134 4.778-6.7442 0.97611-1.6713 1.8471-3.4914 2.1344-5.3136z" fill-opacity="0" stroke="#000" stroke-width="2.9785" style="paint-order:normal"/>
+                                                        <path id="elementGlass" d="m51.082 114.61c-8.4334-4.6422-13.065-11.627-15.083-18.063-2.2169-6.8695-2.0088-13.084-0.70103-18.433 0.66869-2.8076 1.7568-5.0456 3.0804-7.6521 1.2926-2.5456 2.6898-4.624 6.1083-9.2811 3.3124-4.5124 4.7319-6.6782 5.6216-8.5768 0.65802-1.4042 0.7381-1.5011 1.2405-1.5011 0.49742 0 0.52844 0.03567 0.41961 0.48265-0.3904 1.6036-2.654 5.2382-6.5309 10.487-3.3282 4.5055-4.5967 6.4205-5.7289 8.6484-1.2628 2.485-2.0963 4.6442-2.7335 7.0815-1.7242 7.2307-1.1736 10.798-0.32504 14.954 1.063 6.289 6.1421 13.938 10.208 16.895 6.0737 4.8644 12.087 6.8339 18.528 6.8114 4.4114-0.0103 6.1785-0.25856 9.3784-1.3177 8.8718-2.9364 16.016-10.143 18.856-18.699 1.1639-3.506 1.7792-6.2436 1.7736-10.062-8e-3 -5.3316-1.0202-9.7358-3.3454-14.551-1.4282-2.9578-2.5578-4.7239-6.2994-9.8488-3.6476-4.9961-4.7842-6.7057-5.6305-8.4695-0.87644-1.8266-0.96332-2.4783-0.33998-2.5512 0.39113-0.04572 0.49796 0.08167 0.95668 1.1408 0.90347 2.0859 2.1672 4.1215 4.6737 7.5288 6.9242 9.4122 9.0893 13.218 10.409 19.235 0.37582 1.713 1.5344 7.7258 0.21678 14.082-2.2348 10.283-8.8587 18.538-18.722 22.834-4.0591 1.768-9.1353 2.4013-11.403 2.46-5.2032-0.10162-10.5-1.4104-14.629-3.6331z" fill-opacity="0" stroke="#fff" stroke-opacity=".98549" stroke-width="3.5742"/></g>
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block_switch">
+                                    Сирена
+                                    <div id="btn_buzzer" class="switch_btn">
+                                                <input type="checkbox" id="bellCheck"">
+                                                <div id="svgBtnBell">
+                                                    <svg width="128" height="128" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+                                                        <g fill="none" stroke="#fff" stroke-linecap="round">
+                                                            <path id="elementTongue" d="m73.134 115.16a7.8611 8.6654 89.925 0 1 0.0075 0.31744 7.8611 8.6654 89.925 0 1-8.6506 7.8765 7.8611 8.6654 89.925 0 1-8.6802-7.8456 7.8611 8.6654 89.925 0 1 0.0075-0.31796" stroke-opacity=".7011" stroke-width="4.7204" style="paint-order:normal"/>
+                                                        </g>
+                                                        <g fill-opacity="0" stroke="#dc3545" stroke-linecap="round" stroke-width="5.3077">
+                                                            <path id="rightLower" d="m106.96 71.199s5.9739-5.025 5.1504-13.048c-0.82349-8.0232-5.1638-10.516-5.1638-10.516"/>
+                                                            <path id="rightLarge" d="m115.91 75.56s6.8936-6.7907 6.7839-16.761c-0.10963-9.9701-6.3834-15.526-6.3834-15.526"/>
+                                                            <path id="leftLower" d="m20.633 70.808s-5.9739-5.025-5.1504-13.048c0.82349-8.0232 5.1638-10.516 5.1638-10.516"/>
+                                                            <path id="leftLarge" d="m11.679 75.169s-6.8936-6.7907-6.7839-16.761c0.10963-9.9701 6.3834-15.526 6.3834-15.526"/>
+                                                        </g>
+                                                        <g id="elementBell" stroke="#fff" stroke-linecap="round">
+                                                            <g fill="none">
+                                                                <path id="elementInHBottomLeft" d="m73.626 105.48-7.0487 0.47816" stroke-width="3.991"/>
+                                                                <path id="elementInHBottomRight" d="m93.384 102.19c-4.6992 1.8377-13.142 2.5128-13.142 2.5128" stroke-opacity=".9994" stroke-width="4.078"/>
+                                                                <path id="elementInHTop" d="m84.54 49.198s-3.8205 1.4632-18.094 1.5823" stroke-width="4.154" style="paint-order:stroke fill markers"/>
+                                                                <path id="elementMainBell" d="m63.434 21.319c-2.8482 7e-3 -5.6446 0.34716-8.3184 0.98633-6.2738 1.4998-11.869 4.6554-15.852 9.0801-5.1496 5.0715-8.3531 12.26-8.8887 19.945l-0.33789 7.4785-0.23633 5.2559s0.1102 11.714-4.0156 24.51c-2.6787 6.7015-5.3276 11.455-8.6797 16.09 12.191 5.2024 32.905 9.8594 45.104 9.998s38.057-3.1801 48.238-8.9727c-3.3521-4.6352-6.7236-10.379-9.4023-17.08-4.1258-12.796-4.0117-24.512-4.0117-24.512l-0.33594-7.6504-0.14258-3.2402c0.10388-9.2089-3.793-16.023-7.6172-20.332-4.1793-5.5341-15.164-11.556-25.504-11.557z" stroke-opacity=".97194" stroke-width="5.045" style="paint-order:normal"/>
+                                                                <path id="elementInVerticalCenter" d="m86.592 55.219s0.21648 9.9505 0.80394 20.973c0.97552 13.358 3.824 19.64 3.824 19.64" stroke-width="4.0964"/>
+                                                                <path id="elementInVerticalTop" d="m82.92 42.638c-6.3519-9.8969-16.608-9.1885-16.608-9.1885" stroke-width="4.1415"/>
+                                                                <path id="elementInHBottomLeftAfter" d="m73.626 105.48-7.0487 0.47816" stroke-opacity=".70489" stroke-width="3.991"/>
+                                                                <path id="elementMainBellAfter" d="m63.434 21.319c-2.8482 7e-3 -5.6446 0.34716-8.3184 0.98633-6.2738 1.4998-11.869 4.6554-15.852 9.0801-5.1496 5.0715-8.3531 12.26-8.8887 19.945l-0.33789 7.4785-0.23633 5.2559s0.1102 11.714-4.0156 24.51c-2.6787 6.7015-5.3276 11.455-8.6797 16.09 12.191 5.2024 32.905 9.8594 45.104 9.998s38.057-3.1801 48.238-8.9727c-3.3521-4.6352-6.7236-10.379-9.4023-17.08-4.1258-12.796-4.0117-24.512-4.0117-24.512l-0.33594-7.6504-0.14258-3.2402c0.10388-9.2089-3.793-16.023-7.6172-20.332-4.1793-5.5341-15.164-11.556-25.504-11.557z" stroke-opacity=".70072" stroke-width="5.045" style="paint-order:normal"/>
+                                                            </g>
+                                                            <ellipse cx="62.755" cy="9.6654" rx="7.3786" ry="6.8664" fill-opacity="0" stroke-opacity=".69919" stroke-width="4.654" style="paint-order:normal"/>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="line">
+                                <line x1="75" y1="34" x2="75" y2="58"/>
+                            </symbol>
+                            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" id="circle">
+                                <circle cx="75" cy="80" r="35"/>
+                            </symbol>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="right-bar glass_block">
+                <div class="icon-state">
+                    <img src="images/internet-online.svg" alt="internet-online" width="64" height="64">
+                </div>
+                <div class="divide"></div>
+                <div id="icon-state-deposit" class="icon-state icon-hover">
+                    <img id="btn_balance" src="images/wallet.svg" alt="Money" width="64" height="64" onclick="balanceDivOpen()">
+                    <div id="balance" class="glass_block data_wrapper">
+                        <button class="close-div" onclick="balanceDivClose()">&times;</button>
+                        <div id="deposit">Err</div>
+                        <button id="up_balance" class="btn" onclick="upDeposit()">Пополнить картой</button>
+                        <button id="refresh_balance" class="btn" onclick="refreshDeposit()">Обновить</button>
+                        <svg id="spinner_upd_dep" class="display_hide" viewBox="0 0 50 50">
+                            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle>
+                        </svg>   
+                    </div>
+                </div>
+                <div class="divide"></div>
+                <div id="icon-state-battery" class="icon-state">
+                    <img src="images/battery/battery_white.svg" alt="clock_work_mcu" width="64" height="64">
+                    <div id="data_battery" class="data_avr"></div>
+                </div>
+                <div class="divide"></div>
+                <div id="icon-state-signal-gsm" class="icon-state ">
+                    <div class="signal_gsm_css">
+                        <div class="no_signal"></div>
+                        <div class="strip_1"></div>
+                        <div class="strip_2"></div>
+                        <div class="strip_3"></div>
+                        <div class="strip_4"></div>
+                        <div class="strip_5"></div>
+                    </div>
+                </div>
+                <div class="divide"></div>
+                <div class="icon-state icon-state-temp-mcu">
+                    <img src="images/temperature-mcu.svg" alt="state-temp-mcu" width="60" height="64">
+                    <div id="int_temp"></div>
+                </div>
+                <div class="divide"></div>
+                <div class="icon-state icon-hover">
+                    <img id="btn_clock_work_mcu" src="images/clock_work_mcu.svg" alt="clock_work_mcu" width="64" height="64" onclick="timeMCUOpen()">
+                    <div id="clock_work_mcu" class="data_wrapper glass_block">
+                        <button class="close-div" onclick="timeMCUClose()">&times;</button>
+                        <p>Время работы MCU</p>                    
+                        <div id="timeAVR"></div>
+                        <button id="btn_reboot" class="btn" onclick="btnRebootDivOpen()">Перезагрузка</button>
+                        <svg class="spinner_balance display_hide" viewBox="0 0 50 50">
+                            <circle class="path" cx="25" cy="25" r="20" fill="none"
+                                    stroke-width="4"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <div class="divide"></div>
+                <div class="icon-state icon-hover">
+                    <img id="icon-error-mcu" src="images/warning-error.svg" alt="warning-error" width="64" height="64" onclick="errorMCUOpen()">
+                    <div id="err_gsm">
+                        Ошибка
+                    </div>
+                    <div id="error_mcu" class="data_wrapper glass_block ">
+                        <button class="close-div" onclick="errorMCUClose()">&times;</button>
+                        <p>Ошибки GSM</p>
+                        <button id="reset_err_mcu" class="btn">Сброс ошибок</button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="modal_deposit" class="modal glass_block">
+            <button class="close-modal" onclick="modalClose()">&times;</button>
+            <!-- <a href="#section_1" class="close-modal">&times;</a> -->
+            <div class="modal-content-up-balance">
+                <div class="input_code">
+                    <form>
+                        <input type="tel" id="balance_code"
+                               placeholder="Введите код с карты"
+                               required minlength="22" maxlength="22">
+                    </form>
+                    <button type="button" id="btn_send_balance_code" class="btn">
+                        Отправить
+                    </button>
+                </div>
+            </div>
+            <div class="example_up_balance">Пример: *100*1234567890123456#</div>
+        </div>
+    </main>
+
+    <div id="modal_reboot" class="modal glass_block">
+        <button class="close-modal" onclick="btnRebootDivClose()">&times;</button>
+        <div class="title-modal">Что перезагрузить?</div>
+        <div class="d-flex mt-3">
+            <button type="button" id="btn_reboot_gsm" class="btn">GSM</button>
+            <button type="button" id="btn_reboot_mcu_gsm" class="btn">GSM + MCU</button>
+        </div>
+    </div>
+
+    <div id="chart" class="chart glass_block">
+        <div class="header-chart">
+            <div class="title">История температуры</div>
+            <button class="close-chart" onclick="chartClose()">&times;</button>
+        </div>
+        <div class="content">
+            <div class="demo-container">
+                <div id="placeholder" class="demo-placeholder"></div>           
+            </div>
+        </div>
+        <div class="d-flex">
+            <button class="btn" onclick="showCharts('lastday')">За сутки</button>
+            <button class="btn" onclick="showCharts('lastweek')">За неделю</button>
+            <button class="btn" onclick="showCharts('lastmonth')">За месяц</button>
+            <button class="btn" onclick="showCharts('lastyear')">За год</button>
+        </div>
+    </div>  
+
+    <footer>
+        <div>
+            <a href="https://zen.yandex.ru/it_hobby">
+                <img src="images/owl.svg" width="64" height="64">
+            </a>
+            <p>Разработка приложений</p>
+        </div>
+    </footer>
+    <script language="javascript" type="text/javascript" src="js/main_var.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.canvaswrapper.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.colorhelpers.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.flot.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.flot.saturated.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.flot.browser.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.flot.drawSeries.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.flot.uiConstants.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.flot.axislabels.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.flot.uiConstants.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.flot.hover.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.flot.legend.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.flot.time.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.flot.grow.js"></script>
+    <script language="javascript" type="text/javascript" src="js/jquery_flot/jquery.flot.tooltip_0.4.4.js"></script>
+
+    <script language="javascript" type="text/javascript" src="js/howler/howler.core.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/radio.js"></script>
+
+    <script language="javascript" type="text/javascript" src="js/sensor_motion.js"></script>
+    <script language="javascript" type="text/javascript" src="js/utils.js"></script>
+    <script language="javascript" type="text/javascript" src="js/upd_data.js"></script>
+    <script language="javascript" type="text/javascript" src="js/btn_click.js"></script>
+    <script language="javascript" type="text/javascript" src="js/lamp.js"></script>
+    <script language="javascript" type="text/javascript" src="js/bell.js"></script>
+    <script language="javascript" type="text/javascript" src="js/chart.js"></script>
+    <script language="javascript" type="text/javascript" src="js/ws.js"></script>
+    <script>
+        function show() /* функция обновления */ {
+            if (connected == true)
+            {
+                ws.send("update");
+            }
+            else{
+                doConnect("ws://192.168.88.1:8080");
+            }
+        }
+        window.onload = function() {
+            show();
+            setInterval(show, 1000);  /* частота обновления */
+            ///////////////////////////////////////////////////////
+            BtnClick();
+            hoverBtnLamp();
+            hoverBtnBell();
+            doConnect("ws://192.168.88.1:8080");
+            setTimeout(function(){
+                var t = performance.timing;
+                console.log(t.loadEventEnd - t.responseEnd);
+            }, 0);
+            console.log('Страница загружена');
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+# depslib dependency file v1.0
+1630783173 source:/home/shaman/Soft/AVR/328p/security_home/home/ADC.c
+	"main.h"
+
+1630345734 /home/shaman/Soft/AVR/328p/security_home/home/main.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	<ctype.h>
+	<avr/eeprom.h>
+	"IO_Macros.h"
+	"softuart.h"
+	"timer.h"
+	"UART.h"
+	"port.h"
+	"GSM.h"
+	"ADC.h"
+	"sms_parse.h"
+	"eeprom.h"
+	"app.h"
+	"ds18b20.h"
+	"PiezoBuzzer.h"
+
+1625699709 /home/shaman/Soft/AVR/328p/security_home/home/IO_Macros.h
+	<avr/io.h>
+	"main.h"
+
+1630253171 /home/shaman/Soft/AVR/328p/security_home/home/softuart.h
+	"main.h"
+
+1630611164 /home/shaman/Soft/AVR/328p/security_home/home/timer.h
+
+1623682506 /home/shaman/Soft/AVR/328p/security_home/home/UART.h
+
+1630168696 /home/shaman/Soft/AVR/328p/security_home/home/port.h
+
+1630612635 /home/shaman/Soft/AVR/328p/security_home/home/GSM.h
+
+1630613960 /home/shaman/Soft/AVR/328p/security_home/home/ADC.h
+	<avr/io.h>
+
+1630776239 /home/shaman/Soft/AVR/328p/security_home/home/sms_parse.h
+
+1630618667 /home/shaman/Soft/AVR/328p/security_home/home/eeprom.h
+
+1630613742 /home/shaman/Soft/AVR/328p/security_home/home/app.h
+
+1630613453 /home/shaman/Soft/AVR/328p/security_home/home/ds18b20.h
+
+1630014029 /home/shaman/Soft/AVR/328p/security_home/home/PiezoBuzzer.h
+	"main.h"
+
+1630437050 source:/home/shaman/Soft/AVR/328p/security_home/home/app.c
+	"main.h"
+
+1630613444 source:/home/shaman/Soft/AVR/328p/security_home/home/ds18b20.c
+	"main.h"
+	<util/crc16.h>
+
+1630777544 source:/home/shaman/Soft/AVR/328p/security_home/home/eeprom.c
+	"main.h"
+
+1630612670 source:/home/shaman/Soft/AVR/328p/security_home/home/GSM.c
+	"main.h"
+
+1630777544 source:/home/shaman/Soft/AVR/328p/security_home/home/main.c
+	"main.h"
+
+1630611705 source:/home/shaman/Soft/AVR/328p/security_home/home/port.c
+	"main.h"
+
+1630777497 source:/home/shaman/Soft/AVR/328p/security_home/home/sms_parse.c
+	"main.h"
+
+1626809852 source:/home/shaman/Soft/AVR/328p/security_home/home/softuart.c
+	<avr/io.h>
+	<avr/interrupt.h>
+	<avr/pgmspace.h>
+	"softuart.h"
+
+1630659847 source:/home/shaman/Soft/AVR/328p/security_home/home/timer.c
+	"main.h"
+
+1630248224 source:/home/shaman/Soft/AVR/328p/security_home/home/UART.c
+	"main.h"
+
+1649863671 source:/home/prapor/AVR/328p/security_home/home/ADC.c
+	"main.h"
+
+1647535626 /home/prapor/AVR/328p/security_home/home/main.h
+	<avr/io.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	<ctype.h>
+	<avr/eeprom.h>
+	"IO_Macros.h"
+	"softuart.h"
+	"timer.h"
+	"UART.h"
+	"port.h"
+	"GSM.h"
+	"ADC.h"
+	"sms_parse.h"
+	"eeprom.h"
+	"app.h"
+	"ds18b20.h"
+	"su_openwrt.h"
+
+1625699709 /home/prapor/AVR/328p/security_home/home/IO_Macros.h
+	<avr/io.h>
+	"main.h"
+
+1649856442 /home/prapor/AVR/328p/security_home/home/softuart.h
+	"main.h"
+
+1649981631 /home/prapor/AVR/328p/security_home/home/timer.h
+
+1649856468 /home/prapor/AVR/328p/security_home/home/UART.h
+
+1649856407 /home/prapor/AVR/328p/security_home/home/port.h
+
+1650020125 /home/prapor/AVR/328p/security_home/home/GSM.h
+
+1647561507 /home/prapor/AVR/328p/security_home/home/ADC.h
+	<avr/io.h>
+
+1649856419 /home/prapor/AVR/328p/security_home/home/sms_parse.h
+
+1649945392 /home/prapor/AVR/328p/security_home/home/eeprom.h
+
+1649839115 /home/prapor/AVR/328p/security_home/home/app.h
+
+1647559276 /home/prapor/AVR/328p/security_home/home/ds18b20.h
+
+1649866578 /home/prapor/AVR/328p/security_home/home/su_openwrt.h
+
+1650020148 source:/home/prapor/AVR/328p/security_home/home/app.c
+	"main.h"
+
+1647559276 source:/home/prapor/AVR/328p/security_home/home/ds18b20.c
+	"main.h"
+	<util/crc16.h>
+
+1649945418 source:/home/prapor/AVR/328p/security_home/home/eeprom.c
+	"main.h"
+
+1649881150 source:/home/prapor/AVR/328p/security_home/home/main.c
+	"main.h"
+
+1649944851 source:/home/prapor/AVR/328p/security_home/home/port.c
+	"main.h"
+
+1649863671 source:/home/prapor/AVR/328p/security_home/home/sms_parse.c
+	"main.h"
+

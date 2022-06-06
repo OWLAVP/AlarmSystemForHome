@@ -1,0 +1,4 @@
+
+config webuart webuart_config
+	option duration 3
+	option enabled 1
